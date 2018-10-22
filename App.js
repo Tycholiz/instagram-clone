@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import CardList from './components/CardList'
+import Feed from './screens/Feed'
 
 const items = [
   { id: 100, author: 'Bob Ross' },
@@ -18,7 +18,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <CardList items={items}/>
+        <Feed style={styles.feed}/>
       </View>
     );
   }
