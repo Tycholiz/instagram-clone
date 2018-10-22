@@ -10,8 +10,8 @@ import {
 import CardList from './components/CardList'
 
 const items = [
-  { id: 0, author: 'Bob Ross' },
-  { id: 1, author: 'Chuck Norris' },
+  { id: 100, author: 'Bob Ross' },
+  { id: 102, author: 'Chuck Norris' },
 ];
 
 export default class App extends React.Component {

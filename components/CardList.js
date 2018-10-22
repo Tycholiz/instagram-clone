@@ -6,11 +6,12 @@ import {
 	Text,
 	StyleSheet,
 	FlatList,
+	Button,
 } from 'react-native';
 import { } from 'expo';
 
 import Card from './Card'
-import { getImageFromId } from '../utils/api'
+import { getImageFromId } from '../utils/api.js'
 
 const keyExtractor = ({ id }) => id.toString(); //We’ll need to provide a function to the FlatList which maps each element in our data array to its unique key
 
@@ -25,12 +26,16 @@ export default class CardList extends Component {
 	};
 
 	renderItem = ({ item: { id, author } }) => ( //object destructuring on 'items' object passed from App.js
+		// <Button
+		// 	onPress={console.log(getImageFromId(0))}
+		// 	title="hey"
+		// />
 		<Card
 			fullname={author}
-			// image={{
-			// 	uri: getImageFromId(id),
-			// }}
-			image={{ uri: "https://picsum.photos/300/300?image=0" }}
+			image={{
+				uri: getImageFromId(id),
+			}}
+			// image={{ uri: "https://picsum.photos/300/300?image=1084" }}
 		/>
 	);
 
