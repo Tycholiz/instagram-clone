@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+
 import {
 	ColorPropType,
 	View,
@@ -16,7 +17,9 @@ export default function Avatar({ size, backgroundColor, initials }) {
 	}
 
 	return (
-		<View style={style}/>
+		<View style={[styles.container, style]}>
+			<Text style={styles.initials}>{initials}</Text>
+		</View>
 	)
 }
 
@@ -25,3 +28,14 @@ Avatar.propTypes = {
 	size: PropTypes.number.isRequired,
 	backgroundColor: ColorPropType.isRequired,
 };
+
+const styles = StyleSheet.create({
+	container: {
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	initials: {
+		color: 'white',
+		fontSize: 20,
+	}
+});

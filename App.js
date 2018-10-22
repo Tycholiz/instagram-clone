@@ -1,16 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import PropTypes from "prop-types";
 
-import Avatar from './components/Avatar'
+import {
+  StyleSheet,
+  View,
+} from 'react-native';
+import { Constants } from 'expo';
+
+import Card from './components/Card'
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Avatar
-          size={50}
-          backgroundColor={'teal'}
-          initials={'KT'}
+        <Card
+          fullname={'Kyle Tycholiz'}
+          linkText={'Comments'}
+          onPressLinkText={() => {
+            console.log('link pressed!');
+          }}
+          image={{ uri: 'https://unsplash.it/600/600' }}
         />
       </View>
     );
@@ -19,9 +28,9 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: Constants.statusBarHeight,
+    flex: 1, //We can use flex to adapt our layout to different screen sizes. The flex attribute of a component determines only its dimension along the primary axis
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 });
