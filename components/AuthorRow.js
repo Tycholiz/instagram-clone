@@ -8,6 +8,9 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 
+import getInitials from '../utils/getInitials.js';
+import getAvatarColor from '../utils/getAvatarColor.js';
+
 import Avatar from './Avatar';
 
 export default function AuthorRow({ fullname, linkText, onPressLinkText }) {
@@ -15,8 +18,8 @@ export default function AuthorRow({ fullname, linkText, onPressLinkText }) {
 		<View style={styles.container}>
 			<Avatar
 				size={35}
-				backgroundColor={'teal'}
-				initials={'KT'}
+				initials={getInitials(fullname)}
+				backgroundColor={getAvatarColor(fullname)}
 			/>
 			<Text style={styles.text} numberOfLines={1}>
 				{fullname}
