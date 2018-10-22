@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { Constants } from 'expo';
 
 import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Constants } from 'expo';
 
-import Card from './components/Card'
+import CardList from './components/CardList'
+
+const items = [
+  { id: 0, author: 'Bob Ross' },
+  { id: 1, author: 'Chuck Norris' },
+];
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Card
-          fullname={'Kyle Tycholiz'}
-          linkText={'Comments'}
-          onPressLinkText={() => {
-            console.log('link pressed!');
-          }}
-          image={{ uri: 'https://unsplash.it/600/600' }}
-        />
+        <CardList items={items}/>
       </View>
     );
   }

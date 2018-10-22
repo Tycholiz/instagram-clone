@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import {
 	View,
 	StyleSheet,
 	Image,
+	ActivityIndicator,
 } from 'react-native';
+
 import { } from 'expo';
 import AuthorRow from './AuthorRow';
 
@@ -33,6 +36,7 @@ export default class Card extends Component {
 
 	render() {
 		const { fullname, image, linkText, onPressLinkText } = this.props;
+		const { loading } = this.state;
 
 		return (
 			<View>
@@ -41,11 +45,16 @@ export default class Card extends Component {
 					linkText={linkText}
 					onPressLinkText={onPressLinkText}
 				/>
-				<Image
-					style={styles.image}
-					source={image}
-					onLoad={this.handleLoad}
-				/>
+				<View style={styles.image}>
+					{loading && (
+						<ActivityIndicator style={StyleSheet.absoluteFill} size={'large'} /> //absoluteFill = top: 0, bottom: 0, left: 0, right: 0, position: absolute
+					)}
+					<Image //we want image after activityindicator because that means it will be on top of it.
+						style={StyleSheet.absoluteFill}
+						source={image}
+						onLoad={this.handleLoad}
+					/>
+				</View>
 			</View>
 		);
 	}
