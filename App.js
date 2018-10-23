@@ -8,19 +8,34 @@ import {
 } from 'react-native';
 
 import Feed from './screens/Feed';
-import CommentList from './components/CommentList';
+import Comments from './screens/Comments';
 
-const items = [
-  { id: 100, author: 'Bob Ross' },
-  { id: 102, author: 'Chuck Norris' },
-];
+state = {
+  commentsForItem: {},
+  showModal: false,
+  selectedItemId: null, //id of img we're storing comments for
+};
+
+openCommentScreen = id => { //we need to call this from within CardList in order to pass the ID. then we propogate the value thru Feed and up to App.
+  this.setState({
+    showModal: true,
+    selectedItemId: id,
+  });
+};
+
+closeCommentScreen = () => {
+  this.setState({
+    sowModal: false,
+    selectedItemId: false,
+  });
+};
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         {/* <Feed style={styles.feed}/> */}
-        <CommentList />
+        <Comments />
       </View>
     );
   }
