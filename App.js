@@ -27,21 +27,23 @@ export default class App extends React.Component {
   };
 
   closeCommentScreen = () => {
+    console.log("before", this.state)
     this.setState({
-      sowModal: false,
-      selectedItemId: false,
+      showModal: false,
+      selectedItemId: null,
     });
+    console.log("after", this.state)
   };
 
   onSubmitComment = (text) => {
     const { selectedItemId, commentsForItem } = this.state;
     const comments = commentsForItem[selectedItemId] || []
-
     const updated = {
       ...commentsForItem,
       [selectedItemId]: [...comments, text],
     };
-    this.setState({ commentsForItem: upload })
+
+    this.setState({ commentsForItem: updated })
   };
 
   render() {
@@ -62,6 +64,7 @@ export default class App extends React.Component {
             style={styles.container}
             comments={commentsForItem[selectedItemId] || []}
             onClose={this.closeCommentScreen}
+            onSubmitComment={this.onSubmitComment}
           />
         </Modal>
       </View>

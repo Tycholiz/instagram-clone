@@ -7,8 +7,6 @@ import {
 	ScrollView,
 } from 'react-native';
 
-import CommentInput from './CommentInput'
-
 export default class CommentList extends Component {
 	static propTypes = {
 		items: PropTypes.arrayOf(PropTypes.string).isRequired,
