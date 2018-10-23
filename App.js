@@ -7,7 +7,8 @@ import {
   View,
 } from 'react-native';
 
-import Feed from './screens/Feed'
+import Feed from './screens/Feed';
+import CommentList from './components/CommentList';
 
 const items = [
   { id: 100, author: 'Bob Ross' },
@@ -18,7 +19,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Feed style={styles.feed}/>
+        {/* <Feed style={styles.feed}/> */}
+        <CommentList />
       </View>
     );
   }
