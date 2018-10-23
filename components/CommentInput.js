@@ -14,7 +14,7 @@ export default class CommentInput extends Component {
 	};
 
 	static defaultProps = {
-		placeholder: 'Leave a comment', //in pdf, this is left blankd
+		placeholder: '',
 	};
 
 	state = {

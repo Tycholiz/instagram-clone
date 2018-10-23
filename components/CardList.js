@@ -22,26 +22,38 @@ export default class CardList extends Component {
 				id: PropTypes.number.isRequired,
 				author: PropTypes.string.isRequired,
 			}),
-		).isRequired
+		).isRequired,
+		commentsForItem: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string))
+			.isRequired,
+		onPressComments: PropTypes.func.isRequired,
 	};
 
-	renderItem = ({ item: { id, author } }) => ( //object destructuring on 'items' object passed from App.js
-		<Card
-			fullname={author}
-			image={{
-				uri: getImageFromId(id),
-			}}
-		/>
-	);
+	//Each time the FlatList decides to render a new item, it will call the renderItem function we provide
+	renderItem = ({ item: { id, author } }) => { //object destructuring on 'items' object passed from App.js
+		const { commentsForItem, onPressComments } = this.props;
+		const comments = commentsForItem[id];
+
+		return (
+			<Card
+				fullname={author}
+				image={{
+					uri: getImageFromId(id),
+				}}
+				linkText={`${comments ? comments.length : 0} Comments`}
+				onPressLinkText={() => onPressComments(id)}
+			/>
+		);
+	};
 
 	render() {
-		const { items } = this.props;
+		const { items, commentsForItem } = this.props;
 
 		return (
 			<FlatList
 				data={items}
 				renderItem={this.renderItem}
 				keyExtractor={keyExtractor}
+				extraData={commentsForItem} //the count of comments we use for the linkText won’t immediately update when we add new comments.This is due to how the FlatList decides whether or not to re-render items; the FlatList will only re-render an item when the data prop changes or when scrolling.In this case, we pass the items prop of CardList into the data prop of FlatList , but our commentsForItem prop doesn’ t cause the items array to change, so the FlatList won’ t update when new comments are added.We can use the prop extraData of FlatList to inform the FlatList that it should monitor another source of input data for changes
 			/>
 		);
 	}

@@ -13,6 +13,9 @@ import CardList from '../components/CardList';
 export default class Feed extends Component {
 	static propTypes = {
 		style: ViewPropTypes.style,
+		commentsForItem: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string))
+			.isRequired,
+		onPressComments: PropTypes.func.isRequired,
 	};
 
 	static defaultProps = {
@@ -42,7 +45,7 @@ export default class Feed extends Component {
 	}
 
 	render() {
-		const { style } = this.props;
+		const { style, commentsForItem, onPressComments } = this.props;
 		const { loading, error, items } = this.state;
 
 		if (loading) {
@@ -54,8 +57,13 @@ export default class Feed extends Component {
 		}
 
 		return (
+			//automatically applies paddings to reflect the portion of the view that is not covered by navigation bars, tab bars, toolbars, and other ancestor views
 			<SafeAreaView style={style}>
-				<CardList items={items} />
+				<CardList
+					items={items}
+					commentsForItem={commentsForItem}
+					onPressComments={onPressComments}
+				/>
 			</SafeAreaView>
 		);
 	}
